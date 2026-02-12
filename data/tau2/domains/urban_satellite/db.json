@@ -1,0 +1,17 @@
+{
+    "sites": {
+        "Alpha": {
+          "site_id": "Alpha",
+          "lat": 22.3168,
+          "lon": 112.5045,
+          "description": "Primary candidate for North District"
+        },
+        "Beta": {
+          "site_id": "Beta",
+          "lat": 22.3210,
+          "lon": 112.51,
+          "description": "Secondary candidate near shopping mall"
+        }
+      },
+    "analysis_cache": {}
+} 

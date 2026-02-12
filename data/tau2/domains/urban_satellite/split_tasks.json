@@ -1,0 +1,11 @@
+{
+    "train": [
+        "urban_sat_5g_01"
+    ],
+    "test": [
+        "urban_sat_5g_01"
+    ],
+    "base": [
+        "urban_sat_5g_01"
+    ]
+}

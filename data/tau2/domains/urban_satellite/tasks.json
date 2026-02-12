@@ -1,0 +1,58 @@
+[
+    {
+      "id": "urban_sat_5g_01",
+      "description": {
+        "purpose": "Test spatial memory, multi-site comparison, and adaptive zoom usage based on user feedback.",
+        "relevant_policies": [
+          "Deployment Threshold (7.5)",
+          "Imagery Retrieval (Zoom 15 for context, 18 for detail)"
+        ],
+        "notes": "Agent must remember Alpha's data while waiting for Beta's coordinates."
+      },
+      "user_scenario": {
+        "persona": {
+          "role": "Network Deployment Engineer",
+          "name": "Mark S."
+        },
+        "instructions": {
+          "task_instructions": "Ask the agent to compare two sites, 'Alpha' and 'Beta', for 5G deployment. Provide Alpha's coordinates (22.3168, 112.5045) first. Only provide Beta's coordinates (22.3210, 112.5100) after the agent acknowledges Alpha. If the agent recommends Alpha because it has a higher score, challenge them by asking if Beta is near a shopping mall and request a Zoom 15 view of Beta.",
+          "domain": "urban_satellite",
+          "reason_for_call": "Budget only allows for one tower; need the highest density location.",
+          "known_info": "Site Alpha: 22.3168, 112.5045. Site Beta: 22.3210, 112.5100. Threshold is 7.5.",
+          "unknown_info": "Density scores for both sites."
+        }
+      },
+      "initial_state": {
+        "sites": {},
+        "tasks": {
+          "task_101": {
+            "task_id": "task_101",
+            "title": "5G Rollout",
+            "description": "Evaluate North District sites.",
+            "status": "pending"
+          }
+        }
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_satellite_tile",
+            "arguments": { "lat": 22.3168, "lon": 112.5045, "zoom": 18 }
+          },
+          {
+            "name": "get_satellite_tile",
+            "arguments": { "lat": 22.3210, "lon": 112.5100, "zoom": 18 }
+          },
+          {
+            "name": "get_satellite_tile",
+            "arguments": { "lat": 22.3210, "lon": 112.5100, "zoom": 15 }
+          }
+        ],
+        "nl_assertions": [
+          "Agent should correctly identify that Site Alpha (8.4) is higher than Site Beta (7.1).",
+          "Agent must perform a Zoom 15 fetch for Site Beta after the user mentions the shopping mall.",
+          "Agent must provide a final recommendation based on the 7.5 threshold policy."
+        ]
+      }
+    }
+  ]
